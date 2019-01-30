@@ -1,6 +1,6 @@
 import axios from "axios";
 export const FETCH_PHOTO = "FETCH_PHOTO";
-export const POST_LOADING = "POST_LOADING";
+export const LOADING = "POST_LOADING";
 export const GET_ERRORS = "GET_ERRORS";
 
 const KEY = `i6V4acPzUYieJPgrWGxvgc3ay1BYVF757kNh4R0Y`;
@@ -26,6 +26,6 @@ export const fetchPhoto = () => dispatch => {
 
 export const setLoading = () => {
   return {
-    type: POST_LOADING
+    type: LOADING
   };
 };

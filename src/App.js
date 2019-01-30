@@ -3,6 +3,7 @@ import "./App.css";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import { fetchPhoto } from "./store/actions";
+import NasaCard from "./component/Card";
 
 class App extends Component {
   componentDidMount() {
@@ -21,12 +22,12 @@ class App extends Component {
     }
     return (
       <div className="App">
+        <h1 className="nasa-title">NASA Photo of the day </h1>
         {loading && (
           <Loader type="Ball-Triangle" color="#00BFFF" height="90" width="60" />
         )}
         {!errors && <h1 style={{ color: "red" }}>{errors}</h1>}
-        <img src={nasa.url} alt={nasa.title} />
-        <button>add</button>
+        <NasaCard nasa={nasa} />
       </div>
     );
   }

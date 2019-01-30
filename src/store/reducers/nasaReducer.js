@@ -1,4 +1,4 @@
-import { POST_LOADING, FETCH_PHOTO } from "../actions";
+import { LOADING, FETCH_PHOTO } from "../actions";
 
 const initialState = {
   ptoDay: null,
@@ -6,7 +6,7 @@ const initialState = {
 };
 export default function nasaReducer(state = initialState, action) {
   switch (action.type) {
-    case POST_LOADING:
+    case LOADING:
       return {
         ...state,
         loading: true
