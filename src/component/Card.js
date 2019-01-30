@@ -5,20 +5,23 @@ import {
   CardText,
   CardBody,
   CardTitle,
-  CardSubtitle,
-  Button
+  CardSubtitle
 } from "reactstrap";
 
 const NasaCard = ({ nasa }) => {
   return (
     <>
       <Card>
-        <CardImg top width="100%" src={nasa.url} alt={nasa.title} />
+        <CardImg
+          top
+          width="100%"
+          src={nasa && nasa.url}
+          alt={nasa && nasa.title}
+        />
         <CardBody>
-          <CardTitle>{nasa.title}</CardTitle>
-          <CardSubtitle>{nasa.copyright}</CardSubtitle>
-          <CardText>{nasa.explanation}</CardText>
-          <Button>Button</Button>
+          <CardTitle>{nasa && nasa.title}</CardTitle>
+          <CardSubtitle>{nasa && nasa.copyright}</CardSubtitle>
+          <CardText>{nasa && nasa.explanation}</CardText>
         </CardBody>
       </Card>
     </>
