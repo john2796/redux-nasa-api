@@ -62,10 +62,16 @@ class App extends Component {
             </FormGroup>
             <Button type="submit">search</Button>
           </Form>
+          {loading && (
+            <Loader
+              type="Ball-Triangle"
+              color="#00BFFF"
+              height="90"
+              width="60"
+            />
+          )}
         </div>
-        {loading && (
-          <Loader type="Ball-Triangle" color="#00BFFF" height="90" width="60" />
-        )}
+
         <div className="container">
           {filteredImages.map((x, i) => {
             console.log(x.data[0]);
