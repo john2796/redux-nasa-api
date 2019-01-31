@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import { searchPhoto } from "./store/actions";
 import { Button, Form, FormGroup, Input } from "reactstrap";
-import Gallery from "react-grid-gallery";
 
 const photos = [
   {
@@ -47,12 +46,9 @@ class App extends Component {
 
   render() {
     const { loading, errors, searchD } = this.props;
-    console.log(searchD);
+    let filteredImages = searchD.filter(x => x.links[0].href.includes(".jpg"));
     return (
       <div className="App">
-        {/* {searchD.length && !searchD.collection.items.length && (
-          <h1 className="red">Search not found</h1>
-        )} */}
         {errors && <h1 style={{ color: "red" }}>{errors.message}</h1>}
         <h1 className="nasa-title">NASA Photo of the day </h1>
         <Form onSubmit={e => this.handleSubmit(e)}>
@@ -70,11 +66,21 @@ class App extends Component {
         {loading && (
           <Loader type="Ball-Triangle" color="#00BFFF" height="90" width="60" />
         )}
-        {searchD.map(x => {
+        {filteredImages.map((x, i) => {
           return (
-            <div>
-              {/* <h1>{x.data[0].description}</h1> */}
-              <Gallery photos={photos} />;
+            <div key={i}>
+              <div className="container">
+                <div className={`box${i} box`}>
+                  <img
+                    className={`img${i} images`}
+                    alt="testing"
+                    src={x.links[0].href}
+                  />
+                  <h2>{x.data[0].title}</h2>
+                  <p>{x.data[0].date_created}</p>
+                  {/* <p>{x.data[0].description}</p> */}
+                </div>
+              </div>
             </div>
           );
         })}
