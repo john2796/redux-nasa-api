@@ -16,7 +16,7 @@ export const searchPhoto = query => dispatch => {
     .then(res =>
       dispatch({
         type: SEARCH_SUCCESS,
-        payload: res.data.collection.items.filter((x, idx) => idx < 6)
+        payload: res.data.collection.items.filter((x, idx) => idx < 20)
       })
     )
     .catch(err =>

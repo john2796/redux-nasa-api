@@ -3,21 +3,19 @@ import "./App.css";
 import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import { searchPhoto } from "./store/actions";
-import { Button, Form, FormGroup, Input } from "reactstrap";
 
-const photos = [
-  {
-    src: "http://example.com/example/img1.jpg",
-    width: 4,
-    height: 3
-  },
-  {
-    src: "http://example.com/example/img2.jpg",
-    width: 1,
-    height: 1
-  }
-];
-
+import {
+  Form,
+  FormGroup,
+  Input,
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button
+} from "reactstrap";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -66,24 +64,26 @@ class App extends Component {
         {loading && (
           <Loader type="Ball-Triangle" color="#00BFFF" height="90" width="60" />
         )}
-        {filteredImages.map((x, i) => {
-          return (
-            <div key={i}>
-              <div className="container">
-                <div className={`box${i} box`}>
-                  <img
-                    className={`img${i} images`}
-                    alt="testing"
-                    src={x.links[0].href}
-                  />
-                  <h2>{x.data[0].title}</h2>
-                  <p>{x.data[0].date_created}</p>
-                  {/* <p>{x.data[0].description}</p> */}
-                </div>
-              </div>
-            </div>
-          );
-        })}
+        <div className="container">
+          {filteredImages.map((x, i) => {
+            console.log(x.data[0]);
+            return (
+              <Card key={i}>
+                <CardImg
+                  top
+                  width="100%"
+                  src={x.links[0].href}
+                  alt="Card image cap"
+                />
+                <CardBody>
+                  <CardTitle>{x.data[0].title}</CardTitle>
+                  <CardSubtitle>{x.data[0].date_created}</CardSubtitle>
+                  <CardText>{x.data[0].secondary_creator}</CardText>
+                </CardBody>
+              </Card>
+            );
+          })}
+        </div>
       </div>
     );
   }
