@@ -1,8 +1,9 @@
-import { LOADING, FETCH_PHOTO } from "../actions";
+import { RECIEVED_NEW_IMAGE, SEARCH_SUCCESS, LOADING } from "../actions";
 
 const initialState = {
-  ptoDay: null,
-  loading: false
+  loading: false,
+  searchD: null,
+  img: null
 };
 export default function nasaReducer(state = initialState, action) {
   switch (action.type) {
@@ -11,11 +12,18 @@ export default function nasaReducer(state = initialState, action) {
         ...state,
         loading: true
       };
-    case FETCH_PHOTO:
+
+    case SEARCH_SUCCESS:
       return {
         ...state,
         loading: false,
-        ptoDay: action.payload
+        searchD: action.payload
+      };
+    case RECIEVED_NEW_IMAGE:
+      return {
+        ...state,
+        loading: false,
+        img: action.payload
       };
 
     default:

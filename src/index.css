@@ -2,6 +2,8 @@
 
 * {
   font-family: "Titillium Web", sans-serif;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 body {
@@ -22,6 +24,12 @@ body {
 
 .nasa-title {
   color: #38414b;
-  margin: 20px 0 50px 0;
+  margin: 20px 0 0px 0;
   font-family: "Titillium Web", sans-serif;
+}
+.btn {
+  margin-bottom: 101px;
+}
+.red {
+  color: red;
 }
