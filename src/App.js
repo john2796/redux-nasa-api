@@ -48,19 +48,21 @@ class App extends Component {
     return (
       <div className="App">
         {errors && <h1 style={{ color: "red" }}>{errors.message}</h1>}
-        <h1 className="nasa-title">NASA Photo of the day </h1>
-        <Form onSubmit={e => this.handleSubmit(e)}>
-          <FormGroup>
-            <Input
-              type="text"
-              name="query"
-              placeholder="search here.."
-              value={this.state.query}
-              onChange={this.handleChange}
-            />
-          </FormGroup>
-          <Button type="submit">search</Button>
-        </Form>
+        <div className="wrapper">
+          <h1 className="nasa-title">NASA Photo of the day </h1>
+          <Form onSubmit={e => this.handleSubmit(e)}>
+            <FormGroup>
+              <Input
+                type="text"
+                name="query"
+                placeholder="search here.."
+                value={this.state.query}
+                onChange={this.handleChange}
+              />
+            </FormGroup>
+            <Button type="submit">search</Button>
+          </Form>
+        </div>
         {loading && (
           <Loader type="Ball-Triangle" color="#00BFFF" height="90" width="60" />
         )}
