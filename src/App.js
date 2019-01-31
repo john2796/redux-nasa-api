@@ -4,6 +4,20 @@ import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
 import { searchPhoto } from "./store/actions";
 import { Button, Form, FormGroup, Input } from "reactstrap";
+import Gallery from "react-grid-gallery";
+
+const photos = [
+  {
+    src: "http://example.com/example/img1.jpg",
+    width: 4,
+    height: 3
+  },
+  {
+    src: "http://example.com/example/img2.jpg",
+    width: 1,
+    height: 1
+  }
+];
 
 class App extends Component {
   constructor(props) {
@@ -14,42 +28,34 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.searchPhoto();
+  }
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
 
-  handleSubmit = (e, firstlink) => {
+  handleSubmit = e => {
     e.preventDefault();
-    console.log("handlesubmit", firstlink);
     if (!this.state.query.length) return;
-    this.props.searchPhoto(this.state.query, firstlink);
-    // this.props.getCollectImg(href);
+    this.props.searchPhoto(this.state.query);
     this.setState({ query: "" });
   };
 
   render() {
     const { loading, errors, searchD } = this.props;
-    console.log(errors);
-    const data =
-      searchD &&
-      searchD.collection.items.filter((x, idx) => idx < 9).map(x => x.data[0]);
-
-    const href =
-      searchD &&
-      searchD.collection.items.filter((x, idx) => idx < 9).map(x => x.href);
-    const firstlink = href && href[0];
-    console.log("firstlink", firstlink);
-
+    console.log(searchD);
     return (
       <div className="App">
-        {searchD && !searchD.collection.items.length && (
+        {/* {searchD.length && !searchD.collection.items.length && (
           <h1 className="red">Search not found</h1>
-        )}
+        )} */}
         {errors && <h1 style={{ color: "red" }}>{errors.message}</h1>}
         <h1 className="nasa-title">NASA Photo of the day </h1>
-        <Form onSubmit={e => this.handleSubmit(e, firstlink)}>
+        <Form onSubmit={e => this.handleSubmit(e)}>
           <FormGroup>
             <Input
               type="text"
@@ -64,7 +70,14 @@ class App extends Component {
         {loading && (
           <Loader type="Ball-Triangle" color="#00BFFF" height="90" width="60" />
         )}
-        {data && data.map((y, idx) => <div key={idx}>{y.center}</div>)}
+        {searchD.map(x => {
+          return (
+            <div>
+              {/* <h1>{x.data[0].description}</h1> */}
+              <Gallery photos={photos} />;
+            </div>
+          );
+        })}
       </div>
     );
   }
